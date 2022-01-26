@@ -14,16 +14,16 @@ class Game:
         self.board = Board(screen)
         self.setup_board()
 
-    def add_group_pieces(self, pieces,no_of_pieces):
+    def add_group_pieces(self, piece,no_of_pieces):
         sprite_group = pygame.sprite.GroupSingle()
         if pieces == "white_pawn":
-            for i in range(no_of_pieces):
+            for i in range(no_of_pieces-1):
                 pos = [128+64*i,64+64*1]
                 sprite = Pawn("w", pos)
                 sprite_group.add(sprite)
             
         if pieces == "black_pawn":
-            for i in range(no_of_pieces):
+            for i in range(no_of_pieces-1):   
                 pos = [128+64*i,64+64*6]
                 sprite = Pawn("b", pos)
                 sprite_group.add(sprite)

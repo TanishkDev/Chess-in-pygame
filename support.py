@@ -17,7 +17,7 @@ def import_boards():
 #Import pieces into the game
 def import_pieces(path):
     surface = pygame.image.load(path).convert_alpha()
-    tile_num_x = surface.get_size()[0] // 16    
+    tile_num_x = surface.get_size()[0] // 16
     tile_num_y = surface.get_size()[1] // 16
 
     cut_tiles = []
