@@ -9,7 +9,7 @@ class Board:
         self.boards = import_boards()
         self.board_number = 0
         self.rect = self.boards[self.board_number].get_rect()
-        print(self.rect.topleft)
+        
 
     #draw boards
     def draw(self):

@@ -3,7 +3,7 @@ import sys
 from setting import *
 from board import Board
 from pieces import *
-from mouse import Mouse
+
 
 pygame.init()
 
@@ -95,7 +95,7 @@ class Game:
                 if val == 16:
                     self.black_king = King("b", pos)
                 if val == 15:
-                    self.black_queen = Queen("b", pos)   
+                    self.black_queen = Queen("b", pos)
 
 
     def draw_peices(self):
@@ -119,9 +119,23 @@ class Game:
             piece.draw(self.screen)
         for piece in self.black_bishop:
             piece.draw(self.screen)
-        
+
         self.black_king.draw(self.screen)
         self.black_queen.draw(self.screen)
+
+    def select_piece(self):
+        for row_ind,row in enumerate(self.pieces_map):
+            for col_ind,col in enumerate(self.pieces_map):
+                if [col_ind,row_ind] == self.mouse_pos:
+                    if self.mouse_pos == [0,0]:
+                        print("rook")
+
+
+
+    def get_mouse_pos(self,mouse_pos):
+        self.mouse_pos = mouse_pos
+        self.select_piece()
+        
 
     def run(self):
         self.board.draw()
@@ -140,6 +154,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.MOUSEBUTTONUP:
+            mouse_pos = pygame.mouse.get_pos()
+            x_pos = (mouse_pos[0]-128)//64
+            y_pos = (mouse_pos[1]-64)//64
+            game.get_mouse_pos([x_pos,y_pos])
+
 
     screen.fill((43, 46, 51))
     game.run()

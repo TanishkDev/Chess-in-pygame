@@ -11,7 +11,7 @@ def import_boards():
             image = pygame.image.load(full_path).convert_alpha()
             image = pygame.transform.scale(image, (512, 524))
             boards.append(image)
-
+    
     return boards
 
 #Import pieces into the game
