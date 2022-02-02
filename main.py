@@ -32,7 +32,7 @@ class Game:
     def __init__(self, screen):
         self.screen = screen
         self.board = Board(self.screen)
-
+        self.selected_or_not = False
         self.pieces_map = [[2, 3, 4, 5, 6, 4, 3, 2],
                            [1, 1, 1, 1, 1, 1, 1, 1],
                            [0, 0, 0, 0, 0, 0, 0, 0],
@@ -97,7 +97,6 @@ class Game:
                 if val == 15:
                     self.black_queen = Queen("b", pos)
 
-
     def draw_peices(self):
         for piece in self.white_pawn:
             piece.draw(self.screen)
@@ -124,21 +123,57 @@ class Game:
         self.black_queen.draw(self.screen)
 
     def select_piece(self):
-        for row_ind,row in enumerate(self.pieces_map):
-            for col_ind,col in enumerate(self.pieces_map):
-                if [col_ind,row_ind] == self.mouse_pos:
-                    if self.mouse_pos == [0,0]:
-                        print("rook")
+        for row_ind, row in enumerate(self.pieces_map):
+            for col_ind, col in enumerate(self.pieces_map):
+                x = col_ind * size + 128
+                y = row_ind * size + 64
+                if self.mouse_pos == [row_ind, col_ind]:
+                    #TODO MAKE IT MORE EFFICIENT
+                    for piece in self.white_rook:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    for piece in self.white_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    for piece in self.white_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    for piece in self.white_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    for piece in self.white_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    for piece in self.white_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}            
 
+    def highlight_piece(self):
+        if self.selected_or_not:
+            higlight = pygame.Surface((64, 64), flags=pygame.SRCALPHA)
+            higlight.fill((232, 189, 70,70))
+            pos = self.selected_piece["pos"]
+            screen.blit(higlight, pos)
 
-
-    def get_mouse_pos(self,mouse_pos):
+    def get_mouse_pos(self, mouse_pos):
         self.mouse_pos = mouse_pos
         self.select_piece()
-        
 
     def run(self):
         self.board.draw()
+        self.highlight_piece()
         self.draw_peices()
 
 
@@ -158,8 +193,8 @@ while True:
             mouse_pos = pygame.mouse.get_pos()
             x_pos = (mouse_pos[0]-128)//64
             y_pos = (mouse_pos[1]-64)//64
-            game.get_mouse_pos([x_pos,y_pos])
 
+            game.get_mouse_pos([x_pos, y_pos])
 
     screen.fill((43, 46, 51))
     game.run()
