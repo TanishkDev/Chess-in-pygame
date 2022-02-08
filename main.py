@@ -60,7 +60,7 @@ class Game:
             for col_ind, val in enumerate(row):
                 x = col_ind * size + 128
                 y = row_ind * size + 64
-
+        
                 pos = [x, y]
 
                 if val == 1:
@@ -124,41 +124,72 @@ class Game:
 
     def select_piece(self):
         for row_ind, row in enumerate(self.pieces_map):
-            for col_ind, col in enumerate(self.pieces_map):
+            for col_ind, val in enumerate(row):
                 x = col_ind * size + 128
                 y = row_ind * size + 64
-                if self.mouse_pos == [row_ind, col_ind]:
-                    #TODO MAKE IT MORE EFFICIENT
+
+                
+                if self.mouse_pos == [col_ind, row_ind]:
+                    #white pieces select
+                    for piece in self.white_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)} 
                     for piece in self.white_rook:
                         if piece.rect.x == x and piece.rect.y == y:
                             self.selected_or_not = True
                             self.selected_piece = {
                                 "p": piece, "name": "r_w_1", "pos": (x, y)}
-                    for piece in self.white_pawn:
+                    for piece in self.white_knight:
                         if piece.rect.x == x and piece.rect.y == y:
                             self.selected_or_not = True
                             self.selected_piece = {
                                 "p": piece, "name": "r_w_1", "pos": (x, y)}
-                    for piece in self.white_pawn:
+                    for piece in self.white_bishop:
                         if piece.rect.x == x and piece.rect.y == y:
                             self.selected_or_not = True
                             self.selected_piece = {
                                 "p": piece, "name": "r_w_1", "pos": (x, y)}
-                    for piece in self.white_pawn:
+                    if self.white_king.rect.x==x and self.white_king.rect.y == y:
+                        self.selected_or_not = True
+                        self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    if self.white_queen.rect.x==x and self.white_queen.rect.y == y:
+                        self.selected_or_not = True
+                        self.selected_piece = {"p":piece,"pos":(x,y)}
+
+                    #black pieces select
+                    for piece in self.black_pawn:
+                        if piece.rect.x == x and piece.rect.y == y:
+                            self.selected_or_not = True
+                            self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)} 
+                    for piece in self.black_rook:
                         if piece.rect.x == x and piece.rect.y == y:
                             self.selected_or_not = True
                             self.selected_piece = {
                                 "p": piece, "name": "r_w_1", "pos": (x, y)}
-                    for piece in self.white_pawn:
+                    for piece in self.black_bishop:
                         if piece.rect.x == x and piece.rect.y == y:
                             self.selected_or_not = True
                             self.selected_piece = {
                                 "p": piece, "name": "r_w_1", "pos": (x, y)}
-                    for piece in self.white_pawn:
+                    for piece in self.black_knight:
                         if piece.rect.x == x and piece.rect.y == y:
                             self.selected_or_not = True
                             self.selected_piece = {
-                                "p": piece, "name": "r_w_1", "pos": (x, y)}            
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    if self.black_king.rect.x==x and self.black_king.rect.y == y:
+                        self.selected_or_not = True
+                        self.selected_piece = {
+                                "p": piece, "name": "r_w_1", "pos": (x, y)}
+                    if self.black_queen.rect.x==x and self.black_queen.rect.y == y:
+                        self.selected_or_not = True
+                        self.selected_piece = {"p":piece,"pos":(x,y)}
+
+
+                        
 
     def highlight_piece(self):
         if self.selected_or_not:
