@@ -1,0 +1,28 @@
+# TODO
+Fix more movement than one
+Fix occupying piece
+
+# #highlight the piece
+    # def highlight_piece(self):
+    #     if self.selected_or_not:
+    #         higlight = pygame.Surface((64, 64), flags=pygame.SRCALPHA)
+    #         higlight.fill((232, 189, 70,70))
+    #         pos = self.selected_piece["pos"]
+    #         screen.blit(higlight, pos)
+
+USE A TILE MAP
+[[2,3,4,5,6,4,3,2],
+[1,1,1,1,1,1,1,1],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0]
+[11,11,11,11,11,11,11,11],
+12,13,14,15,16,14,13,12],
+]
+
+MOUSE POS
+x_index = (mouse_x-offset)//row_widht
+y_index = (mouse_y-offset)//col_height
+piece would be at board [x_index][y_index]
+
